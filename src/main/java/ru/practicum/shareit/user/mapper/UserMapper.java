@@ -1,10 +1,11 @@
 package ru.practicum.shareit.user.mapper;
 
+import org.springframework.stereotype.Component;
+import ru.practicum.shareit.user.dto.UserDto;
+import ru.practicum.shareit.user.model.User;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Component;
-import ru.practicum.shareit.user.User;
-import ru.practicum.shareit.user.dto.UserDto;
 
 @Component
 public class UserMapper {

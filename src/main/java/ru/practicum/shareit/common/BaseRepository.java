@@ -1,19 +1,21 @@
-package ru.practicum.shareit.user.repository;
+package ru.practicum.shareit.common;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 import lombok.RequiredArgsConstructor;
 
+import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
+
+/**
+ * Общий базовый класс для CRUD операций
+ */
 @RequiredArgsConstructor
 public abstract class BaseRepository<T extends CommonIdGenerator> {
     public final Map<Long, T> storage = new HashMap<>();
     private final AtomicLong idGenerator = new AtomicLong();
 
-    public T findById(final Long id) {
-        return storage.get(id);
+    public Optional<T> findById(final Long id) {
+        T t = storage.get(id);
+        return Optional.ofNullable(t);
     }
 
     public List<T> findAll() {
@@ -27,9 +29,13 @@ public abstract class BaseRepository<T extends CommonIdGenerator> {
         return storage.get(id);
     }
 
-    public void update(final T entity) {
+    public T update(final T entity) {
         Long entityId = entity.getId();
+        if (!storage.containsKey(entityId)) {
+            throw new IllegalArgumentException("Entity with id=" + entityId + " not found");
+        }
         storage.put(entityId, entity);
+        return storage.get(entityId);
     }
 
     public boolean delete(final Long id) {

@@ -1,9 +1,9 @@
-package ru.practicum.shareit.item;
+package ru.practicum.shareit.request.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/items")
-public class ItemController {
+@RequestMapping(path = "/requests")
+public class ItemRequestController {
 }

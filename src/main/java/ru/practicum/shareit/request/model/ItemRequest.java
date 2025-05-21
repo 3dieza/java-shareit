@@ -2,10 +2,16 @@ package ru.practicum.shareit.request.model;
 
 import lombok.Builder;
 import lombok.Data;
+import ru.practicum.shareit.common.CommonIdGenerator;
+import ru.practicum.shareit.user.model.User;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class ItemRequest {
+public class ItemRequest implements CommonIdGenerator {
     private Long id;
-    private String request;
+    private String description;
+    private User requestor;
+    private LocalDateTime created;
 }

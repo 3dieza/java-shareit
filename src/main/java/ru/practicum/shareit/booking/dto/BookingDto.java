@@ -1,17 +1,18 @@
 package ru.practicum.shareit.booking.dto;
 
-import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Data;
-import ru.practicum.shareit.booking.BookingStatus;
+import ru.practicum.shareit.booking.model.BookingStatus;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 public class BookingDto {
     private Long bookingId;
-    @Builder.Default
-    private LocalDateTime startDate = LocalDateTime.now();
-    @Builder.Default
-    private LocalDateTime endDate = LocalDateTime.now();
+    private Long itemId;
+    private Long bookerId;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private BookingStatus status;
 }
