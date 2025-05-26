@@ -13,7 +13,6 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserMapper userMapper;
     private final UserRepository userRepository;
 
     @Override
@@ -22,9 +21,9 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("User can't be null");
         }
         validationEmail(dto, dto.getId());
-        User user = userMapper.toUser(dto);
+        User user = UserMapper.toUser(dto);
         User userCreated = userRepository.create(user);
-        return userMapper.toUserDto(userCreated);
+        return UserMapper.toUserDto(userCreated);
     }
 
     @Override
@@ -34,9 +33,9 @@ public class UserServiceImpl implements UserService {
         }
         validationEmailNotBeNull(dto, id);
         dto.setId(id);
-        User user = userMapper.toUser(dto);
+        User user = UserMapper.toUser(dto);
         User updated = userRepository.update(user);
-        return userMapper.toUserDto(updated);
+        return UserMapper.toUserDto(updated);
     }
 
     @Override
@@ -47,13 +46,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(Long id) {
-        return userRepository.findById(id).map(userMapper::toUserDto)
+        return userRepository.findById(id).map(UserMapper::toUserDto)
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
     }
 
     @Override
     public List<UserDto> getAllUsers() {
-        return userMapper.toListUserDto(userRepository.findAll());
+        return UserMapper.toListUserDto(userRepository.findAll());
     }
 
     private void validationEmail(UserDto user, Long currentUserId) {
