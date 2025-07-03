@@ -1,17 +1,19 @@
 package ru.practicum.shareit.request.dto;
 
+import java.time.LocalDateTime;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ItemRequestDto {
-    private Long id;
-    private String request;
-    private Long requestorId;
-    private LocalDateTime requestDate;
+    Long id;
+    String request;
+    Long requestorId;
+    LocalDateTime requestDate;
 }
