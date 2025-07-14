@@ -10,8 +10,8 @@
 	</parent>
 
 	<modules>
-		<module>shareit-gateway</module>
-		<module>shareit-server</module>
+		<module>gateway</module>
+		<module>server</module>
 	</modules>
 
 	<groupId>ru.practicum</groupId>
